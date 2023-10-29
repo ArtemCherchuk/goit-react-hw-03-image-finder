@@ -31,9 +31,10 @@ export class App extends Component {
       // const response = await DataImages(value, page);
       console.log(response);
       const { hits, totalHits } = response.data;
-      // if (hits.length < 1) {
-      //   alert('Sorry, nothing was found for your request...');
-      // }
+      if (hits.length < 1) {
+        alert('Sorry, nothing was found for your request...');
+        return;
+      }
       this.setState(prevState => {
         return {
           images: [...prevState.images, ...hits],
