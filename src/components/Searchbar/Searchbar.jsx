@@ -8,11 +8,6 @@ export class Searchbar extends Component {
 
   onFormSubmit = e => {
     e.preventDefault();
-    if (this.state.value.trim() === '') {
-      alert('Invalid value entered');
-      return;
-    }
-
     this.props.onSubmit(this.state.value);
     this.setState({ value: '' });
   };
