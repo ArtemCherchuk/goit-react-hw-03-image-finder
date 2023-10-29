@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
-import { BASE_KEY } from './helpers/helpers';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
 import { Modal } from './Modal/Modal';
-// import { DataImages } from './helpers/helpers';
+import { DataImages } from './helpers/helpers';
 
 export class App extends Component {
   state = {
@@ -25,10 +23,9 @@ export class App extends Component {
       this.setState({
         isLoading: true,
       });
-      const response = await axios.get(
-        `https://pixabay.com/api/?q=${this.state.value}&page=${this.state.page}&key=${BASE_KEY}&image_type=photo&orientation=horizontal&per_page=12`
-      );
-      // const response = await DataImages(value, page);
+
+      const response = await DataImages(this.state.value, this.state.page);
+
       console.log(response);
       const { hits, totalHits } = response.data;
       if (hits.length < 1) {
@@ -65,7 +62,7 @@ export class App extends Component {
       return;
     }
 
-    this.setState({ value, images: [] });
+    this.setState({ value, images: [], page: 1 });
   };
 
   onHandleClickLoadMore = e => {
