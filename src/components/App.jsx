@@ -26,7 +26,7 @@ export class App extends Component {
 
       const response = await DataImages(this.state.value, this.state.page);
 
-      console.log(response);
+      // console.log(response);
       const { hits, totalHits } = response.data;
       if (hits.length < 1) {
         alert('Sorry, nothing was found for your request...');
